@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Animation</title>
+  <title>Bouncing Title Animation</title>
   <style>
     body, html {
       margin: 0;
@@ -26,36 +26,41 @@
   <h1 id="animatedTitle">Spooky Forest Adventure</h1>
   <script>
     const title = document.getElementById("animatedTitle");
-    let posX = 0, posY = 0;
-    let speedX = 1, speedY = 1;
+    let posX = 50, posY = 50;  // Starting position
+    let speedX = 2, speedY = 2; // Speed in pixels per frame
     let colorIntensity = 0;
     let colorDirection = 1;
 
     function animate() {
-      
+      // Update position
       posX += speedX;
       posY += speedY;
 
-     
-      if (posX > window.innerWidth - title.clientWidth || posX < 0) speedX *= -1;
-      if (posY > window.innerHeight - title.clientHeight || posY < 0) speedY *= -1;
+      // Get the width and height of the title element
+      const titleWidth = title.clientWidth;
+      const titleHeight = title.clientHeight;
 
-      
+      // Check for collision with the window edges and bounce if needed
+      if (posX <= 0 || posX >= window.innerWidth - titleWidth) speedX *= -1; // Reverse horizontal direction
+      if (posY <= 0 || posY >= window.innerHeight - titleHeight) speedY *= -1; // Reverse vertical direction
+
+      // Apply new position
       title.style.transform = `translate(${posX}px, ${posY}px)`;
 
-      
-      colorIntensity += colorDirection * 1; 
+      // Animate background color for a dimming effect
+      colorIntensity += colorDirection * 1;
       if (colorIntensity >= 50 || colorIntensity <= 0) colorDirection *= -1;
       document.body.style.backgroundColor = `rgb(${10 + colorIntensity}, ${20 + colorIntensity}, ${40 + colorIntensity})`;
 
-     
+      // Continue animation
       requestAnimationFrame(animate);
     }
 
-    
+    // Start the animation loop
     animate();
   </script>
 </body>
 </html>
+
 
 
