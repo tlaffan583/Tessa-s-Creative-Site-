@@ -3,59 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enchanted Forest Adventure</title>
-
-  <!-- Option 1: Google Font Link -->
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-
-  <!-- Option 2: Local Font (if using a local file, remove Google Font link above) -->
-  <!--
+  <title>JavaScript Animation</title>
   <style>
-    @font-face {
-      font-family: "Special Elite";
-      src: url('assets/SpecialElite-Regular.ttf') format('truetype');
-      font-weight: 400;
-      font-style: normal;
-    }
-  </style>
-  -->
-
-  <style>
-    /* Apply .special-elite-regular class */
-    .special-elite-regular {
-      font-family: "Special Elite", system-ui;
-      font-weight: 400;
-      font-style: normal;
-    }
-    body {
-      background-color: #0a1435;
-      color: #ffffff;
-      text-align: center;
+    body, html {
       margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      background-color: #0a1435;
+      overflow: hidden;
     }
-    a {
-      color: #add8e6;
-      text-decoration: none;
-      font-size: 1.5em;
-      border: 2px solid #add8e6;
-      padding: 10px 20px;
-      border-radius: 8px;
-    }
-    a:hover {
-      background-color: #add8e6;
-      color: #0a1435;
+    h1 {
+      font-size: 3em;
+      color: #ffffff;
+      position: absolute;
     }
   </style>
 </head>
-
 <body>
-  <h1 class="special-elite-regular">Welcome to the Enchanted Forest Adventure</h1>
-  <p class="special-elite-regular">Click below to begin your journey.</p>
-  <a href="sketch1.html">Enter the Forest</a>
+  <h1 id="animatedTitle">Spooky Forest Adventure</h1>
+  <script>
+    const title = document.getElementById("animatedTitle");
+    let posX = 0, posY = 0;
+    let speedX = 1, speedY = 1;
+    let colorIntensity = 0;
+    let colorDirection = 1;
+
+    function animate() {
+      
+      posX += speedX;
+      posY += speedY;
+
+     
+      if (posX > window.innerWidth - title.clientWidth || posX < 0) speedX *= -1;
+      if (posY > window.innerHeight - title.clientHeight || posY < 0) speedY *= -1;
+
+      
+      title.style.transform = `translate(${posX}px, ${posY}px)`;
+
+      
+      colorIntensity += colorDirection * 1; 
+      if (colorIntensity >= 50 || colorIntensity <= 0) colorDirection *= -1;
+      document.body.style.backgroundColor = `rgb(${10 + colorIntensity}, ${20 + colorIntensity}, ${40 + colorIntensity})`;
+
+     
+      requestAnimationFrame(animate);
+    }
+
+    
+    animate();
+  </script>
 </body>
 </html>
+
 
