@@ -4,12 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Enchanted Forest Adventure</title>
+
+  <!-- Option 1: Google Font Link -->
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+  <!-- Option 2: Local Font (if using a local file, remove Google Font link above) -->
+  <!--
   <style>
+    @font-face {
+      font-family: "Special Elite";
+      src: url('assets/SpecialElite-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  -->
+
+  <style>
+    /* Apply .special-elite-regular class */
+    .special-elite-regular {
+      font-family: "Special Elite", system-ui;
+      font-weight: 400;
+      font-style: normal;
+    }
     body {
-      font-family: 'Courier New', Courier, monospace;
-      text-align: center;
       background-color: #0a1435;
       color: #ffffff;
+      text-align: center;
       margin: 0;
       display: flex;
       justify-content: center;
@@ -30,13 +51,11 @@
     }
   </style>
 </head>
+
 <body>
-
-  <h1>Welcome to the Enchanted Forest Adventure</h1>
-  <p>Your adventure awaits you...</p>
-
-  <!-- Link to the first sketch page (sketch1.html) -->
+  <h1 class="special-elite-regular">Welcome to the Enchanted Forest Adventure</h1>
+  <p class="special-elite-regular">Click below to begin your journey.</p>
   <a href="sketch1.html">Enter the Forest</a>
-
 </body>
 </html>
+
