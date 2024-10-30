@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tessa's Forest Adventure</title>
 
-
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
   <style>
    
@@ -16,26 +16,26 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: rgb(20, 20, 20); /* Starting color for background */
+      background-color: rgb(20, 20, 20); 
       overflow: hidden;
       font-family: 'Special Elite', sans-serif;
       transition: background-color 0.3s ease;
     }
 
-    /* Title Styling */
+    
     h1 {
       font-size: 3em;
-      color: #440000; /* Dark reddish-black color */
+      color: #440000; 
       position: absolute;
       margin: 0;
     }
 
-    /* Button Styling */
+ 
     a {
-      color: #ff3333; /* Red text color */
+      color: #ff3333; 
       text-decoration: none;
       font-size: 1.5em;
-      border: 2px solid #ff3333; /* Red border color */
+      border: 2px solid #ff3333; 
       padding: 10px 20px;
       border-radius: 8px;
       position: absolute;
@@ -54,41 +54,41 @@
 
   <script>
     const title = document.getElementById("animatedTitle");
-    let posX = 20; // Start very close to the left
-    let speedX = 1.5; // Slower speed for controlled movement
+    let posX = 20; 
+    let speedX = 1.5; 
 
-    // Smaller bouncing range on the left side
-    const maxRange = window.innerWidth * 0.15; // 15% of the screen width
+    
+    const maxRange = window.innerWidth * 0.15; 
 
     function animate() {
-      // Update position for horizontal bouncing
+      
       posX += speedX;
 
-      // Reverse direction if the title reaches the specified range
+   
       if (posX <= 0 || posX >= maxRange) {
         speedX *= -1;
       }
 
-      // Apply horizontal position to title
+     
       title.style.transform = `translateX(${posX}px)`;
 
-      // Continue animation loop
+    
       requestAnimationFrame(animate);
     }
 
-    // Background color change based on cursor position
+    
     document.addEventListener('mousemove', (e) => {
       const screenWidth = window.innerWidth;
       const cursorX = e.clientX;
 
-      // Calculate color intensity based on cursor position (0 to 255)
+      
       const intensity = Math.floor((cursorX / screenWidth) * 255);
 
-      // Transition from dark green to dark gray
+     
       document.body.style.backgroundColor = `rgb(${intensity / 3}, ${intensity / 4}, ${intensity / 3})`;
     });
 
-    // Start the animation loop
+   
     animate();
   </script>
 </body>
