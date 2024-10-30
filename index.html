@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tessa's Forest Adventure</title>
 
-  <!-- Optional Google Font for the Title -->
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
 
   <style>
-    /* General Page Styling */
+   
     body, html {
       margin: 0;
       padding: 0;
@@ -17,33 +16,34 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #1a1a1a; /* Initial dark gray background */
+      background-color: rgb(20, 20, 20); /* Starting color for background */
       overflow: hidden;
       font-family: 'Special Elite', sans-serif;
+      transition: background-color 0.3s ease;
     }
 
-    /* Bouncing Title Styling */
+    /* Title Styling */
     h1 {
-      font-size: 2.5em;
-      color: #add8e6;
+      font-size: 3em;
+      color: #440000; /* Dark reddish-black color */
       position: absolute;
       margin: 0;
     }
 
     /* Button Styling */
     a {
-      color: #add8e6;
+      color: #ff3333; /* Red text color */
       text-decoration: none;
       font-size: 1.5em;
-      border: 2px solid #add8e6;
+      border: 2px solid #ff3333; /* Red border color */
       padding: 10px 20px;
       border-radius: 8px;
       position: absolute;
       bottom: 50px;
     }
     a:hover {
-      background-color: #add8e6;
-      color: #1a1a1a;
+      background-color: #ff3333;
+      color: #0a1435;
     }
   </style>
 </head>
@@ -54,38 +54,53 @@
 
   <script>
     const title = document.getElementById("animatedTitle");
-    let posY = 0;
-    let speedY = 1; // Adjust speed for smooth vertical movement
+    let posX = 20; // Start very close to the left
+    let speedX = 1.5; // Slower speed for controlled movement
 
-    function animateTitle() {
-      // Update vertical position for the bouncing effect
-      posY += speedY;
-      
-      // Limit the title's range of motion to a smaller area vertically
-      if (posY >= 50 || posY <= -50) speedY *= -1;  // Reverse direction when reaching bounds
+    // Smaller bouncing range on the left side
+    const maxRange = window.innerWidth * 0.15; // 15% of the screen width
 
-      // Apply new position to the title element
-      title.style.transform = `translateY(${posY}px)`;
+    function animate() {
+      // Update position for horizontal bouncing
+      posX += speedX;
+
+      // Reverse direction if the title reaches the specified range
+      if (posX <= 0 || posX >= maxRange) {
+        speedX *= -1;
+      }
+
+      // Apply horizontal position to title
+      title.style.transform = `translateX(${posX}px)`;
 
       // Continue animation loop
-      requestAnimationFrame(animateTitle);
+      requestAnimationFrame(animate);
     }
 
-    // Background color based on cursor position
-    document.addEventListener("mousemove", (e) => {
+    // Background color change based on cursor position
+    document.addEventListener('mousemove', (e) => {
       const screenWidth = window.innerWidth;
-      const cursorPosition = e.clientX;
-      
-      // Calculate color based on cursor's horizontal position
-      const greenValue = Math.floor((cursorPosition / screenWidth) * 100) + 10;
-      document.body.style.backgroundColor = `rgb(${greenValue}, ${greenValue}, 40)`;
+      const cursorX = e.clientX;
+
+      // Calculate color intensity based on cursor position (0 to 255)
+      const intensity = Math.floor((cursorX / screenWidth) * 255);
+
+      // Transition from dark green to dark gray
+      document.body.style.backgroundColor = `rgb(${intensity / 3}, ${intensity / 4}, ${intensity / 3})`;
     });
 
-    // Start the title animation loop
-    animateTitle();
+    // Start the animation loop
+    animate();
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 
